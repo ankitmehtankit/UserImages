@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KVNProgress.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource>
+{
+    IBOutlet UICollectionView *collectionView;
+}
 
-
+@property (nonatomic) KVNProgressConfiguration *basicConfiguration;
 @end
 
