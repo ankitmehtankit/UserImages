@@ -101,7 +101,9 @@
     [request setHTTPMethod:@"GET"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//    [request setHTTPBody: requestData];
+    if ([jsonDict allKeys].count > 0) {
+        [request setHTTPBody: requestData];
+    }
     
     
     

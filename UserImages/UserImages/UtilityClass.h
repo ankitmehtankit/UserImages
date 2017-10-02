@@ -7,7 +7,7 @@
 //
 
 typedef void (^ButtonCompletionBlock)(int buttonIndex);
-typedef void(^assignedSuccessfully)();
+typedef void(^assignedSuccessfully)(void);
 
 
 #import <Foundation/Foundation.h>

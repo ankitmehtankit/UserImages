@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "KVNProgress.h"
 
-@interface ViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource,UIScrollViewDelegate>
 {
     IBOutlet UICollectionView *collectionView;
 }

@@ -15,6 +15,7 @@
     NSMutableArray *arrayUsers;
     BOOL hasmore;
     UIImage *placeHolderImage;
+    int pageNumber;
 }
 @property UIView *headerView;
 @end
@@ -23,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    pageNumber = 0;
     [self.headerView removeFromSuperview];
     
     self.basicConfiguration = [KVNProgressConfiguration defaultConfiguration];
@@ -38,8 +40,13 @@
 
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self loadDataFromServer];
+}
+
+#pragma mark- Load Data From Server
+-(void) loadDataFromServer {
     [KVNProgress showWithStatus:@"Loading..."];
-    [[AMParser new] connectionRequestForJsonWithURL:@"1" withJsonDictionary:[NSDictionary new] withSuccessCompletionHandler:^(NSData *objectNotation, NSString *urlString) {
+    [[AMParser new] connectionRequestForJsonWithURL:[NSString stringWithFormat:@"%d",pageNumber] withJsonDictionary:[NSDictionary new] withSuccessCompletionHandler:^(NSData *objectNotation, NSString *urlString) {
         NSError* error = nil;
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:objectNotation
                                                              options:NSUTF8StringEncoding
@@ -54,6 +61,7 @@
                         }
                     }
                     hasmore = objSearchResult.data.hasMore;
+                    pageNumber += 10;
                     [collectionView reloadData];
                 }
                 else {
@@ -78,11 +86,13 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
+#pragma mark- UICollectionViewDataSorurce
+#pragma mark Number of Sections In Collection View
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
     return arrayUsers.count;
 }
 
+#pragma mark View For Supplementry Element(Header/Footer)
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath {
@@ -99,11 +109,14 @@
     }
     return [UICollectionReusableView new];
 }
+
+#pragma mark Number of Items in Collection View
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     AMUsers *objUser = (AMUsers *)[arrayUsers objectAtIndex:section];
     return objUser.items.count;
 }
 
+#pragma mark Size of Items in Collection View
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     AMUsers *objUser = (AMUsers *)[arrayUsers objectAtIndex:indexPath.section];
     if (objUser.items.count % 2 == 1) {
@@ -123,4 +136,27 @@
     return cell;
 }
 
+#pragma mark- UIScrollViewDelegate
+#pragma Scrollview Did End Dragging
+- (void)scrollViewDidEndDragging:(UIScrollView *)aScrollView
+                  willDecelerate:(BOOL)decelerate
+{
+    CGPoint offset = aScrollView.contentOffset;
+    CGRect bounds = aScrollView.bounds;
+    CGSize size = aScrollView.contentSize;
+    UIEdgeInsets inset = aScrollView.contentInset;
+    float y = offset.y + bounds.size.height - inset.bottom;
+    float h = size.height;
+    
+    float reload_distance = 50;
+    if(y > h + reload_distance) {
+        NSLog(@"load more rows");
+        if (hasmore) {
+            [self loadDataFromServer];
+        }
+        else{
+            [[[UIAlertView alloc] initWithTitle:@"" message:@"No more data is available." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        }
+    }
+}
 @end

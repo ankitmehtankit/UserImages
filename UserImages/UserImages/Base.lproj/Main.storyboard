@@ -4,10 +4,16 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -61,28 +67,39 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="srh-sC-0xR" customClass="UICollectionReusableView">
                                                     <rect key="frame" x="0.0" y="0.0" width="310" height="70"/>
                                                     <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9N-fe-oEe">
+                                                            <rect key="frame" x="0.0" y="0.0" width="300" height="70"/>
+                                                            <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="10001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="684-A7-xai">
-                                                            <rect key="frame" x="10" y="10" width="50" height="50"/>
+                                                            <rect key="frame" x="10" y="5" width="60" height="60"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="684-A7-xai" secondAttribute="height" multiplier="1:1" id="dpH-Q6-Dd0"/>
+                                                                <constraint firstAttribute="width" secondItem="684-A7-xai" secondAttribute="height" multiplier="1:1" id="EJ5-tS-a93"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="10002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XwK-uX-lZZ">
-                                                            <rect key="frame" x="70" y="10" width="232" height="50"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
+                                                            <rect key="frame" x="78" y="5" width="217" height="60"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="25"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="XwK-uX-lZZ" secondAttribute="trailing" constant="8" id="AjI-Hy-hm0"/>
-                                                        <constraint firstItem="XwK-uX-lZZ" firstAttribute="top" secondItem="684-A7-xai" secondAttribute="top" id="LmW-tR-m7S"/>
-                                                        <constraint firstItem="684-A7-xai" firstAttribute="top" secondItem="srh-sC-0xR" secondAttribute="top" constant="10" id="Xpn-QR-BIS"/>
-                                                        <constraint firstItem="XwK-uX-lZZ" firstAttribute="bottom" secondItem="684-A7-xai" secondAttribute="bottom" id="ihH-fL-gaN"/>
-                                                        <constraint firstAttribute="bottom" secondItem="684-A7-xai" secondAttribute="bottom" constant="10" id="jTR-IN-G8Y"/>
-                                                        <constraint firstItem="684-A7-xai" firstAttribute="leading" secondItem="srh-sC-0xR" secondAttribute="leading" constant="10" id="pYu-1f-IlA"/>
-                                                        <constraint firstItem="XwK-uX-lZZ" firstAttribute="leading" secondItem="684-A7-xai" secondAttribute="trailing" constant="10" id="s2e-ID-pxm"/>
+                                                        <constraint firstItem="684-A7-xai" firstAttribute="top" secondItem="srh-sC-0xR" secondAttribute="top" constant="5" id="6oo-Kd-f2u"/>
+                                                        <constraint firstItem="e9N-fe-oEe" firstAttribute="leading" secondItem="srh-sC-0xR" secondAttribute="leading" id="Cbi-g7-g7D"/>
+                                                        <constraint firstAttribute="bottom" secondItem="684-A7-xai" secondAttribute="bottom" constant="5" id="DCx-oP-Aig"/>
+                                                        <constraint firstItem="XwK-uX-lZZ" firstAttribute="bottom" secondItem="684-A7-xai" secondAttribute="bottom" id="VBZ-Gx-OnW"/>
+                                                        <constraint firstItem="684-A7-xai" firstAttribute="leading" secondItem="srh-sC-0xR" secondAttribute="leading" constant="10" id="XQg-MK-RIE"/>
+                                                        <constraint firstItem="e9N-fe-oEe" firstAttribute="top" secondItem="srh-sC-0xR" secondAttribute="top" id="iEu-Kz-2HO"/>
+                                                        <constraint firstAttribute="bottom" secondItem="e9N-fe-oEe" secondAttribute="bottom" id="kr4-3E-bVn"/>
+                                                        <constraint firstItem="XwK-uX-lZZ" firstAttribute="leading" secondItem="684-A7-xai" secondAttribute="trailing" constant="8" id="n9r-Pf-TN9"/>
+                                                        <constraint firstAttribute="trailing" secondItem="XwK-uX-lZZ" secondAttribute="trailing" constant="15" id="rDn-1h-cIl"/>
+                                                        <constraint firstAttribute="trailing" secondItem="e9N-fe-oEe" secondAttribute="trailing" constant="10" id="rtT-Jb-QmZ"/>
+                                                        <constraint firstItem="XwK-uX-lZZ" firstAttribute="top" secondItem="684-A7-xai" secondAttribute="top" id="s1S-sq-9vi"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
